@@ -1,3 +1,4 @@
+import { Platform } from "react-native";
 import Constants from "expo-constants";
 
 /**
@@ -17,6 +18,10 @@ export const getBaseUrl = () => {
   const localhost = debuggerHost?.split(":")[0];
 
   if (!localhost) {
+    // Android emulator uses 10.0.2.2 to access host machine's localhost
+    if (Platform.OS === "android") {
+      return "http://10.0.2.2:3000";
+    }
     // return "https://turbo.t3.gg";
     throw new Error(
       "Failed to get localhost. Please point to your production server.",
