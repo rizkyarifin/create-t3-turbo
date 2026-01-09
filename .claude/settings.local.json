@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(pnpm --filter @acme/ui add:*)",
-      "Bash(pnpm install:*)"
+      "Bash(pnpm install:*)",
+      "Bash(pnpm --filter expo dev:ios:*)"
     ],
     "deny": [],
     "ask": []
