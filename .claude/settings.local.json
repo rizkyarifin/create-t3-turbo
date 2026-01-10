@@ -3,7 +3,9 @@
     "allow": [
       "Bash(pnpm --filter @acme/ui add:*)",
       "Bash(pnpm install:*)",
-      "Bash(pnpm --filter expo dev:ios:*)"
+      "Bash(pnpm --filter expo dev:ios:*)",
+      "Bash(npx expo start:*)",
+      "Bash(pnpm dlx:*)"
     ],
     "deny": [],
     "ask": []

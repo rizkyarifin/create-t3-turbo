@@ -1,4 +1,4 @@
-import { View, ScrollView } from "react-native";
+import { View, ScrollView, Pressable } from "react-native";
 import { MoreHorizontal, Trash2, UserPlus } from "lucide-react-native";
 import { Text } from "~/components/ui/text";
 import { Button } from "~/components/ui/button";
@@ -54,16 +54,15 @@ export function OrderPanel({
 
       {/* Add Customer */}
       <View className="px-4 py-3">
-        <Button
-          variant="ghost"
-          className="h-auto justify-start gap-3 px-0"
+        <Pressable
+          className="flex-row items-center gap-3 active:opacity-70"
           onPress={onAddCustomer}
         >
           <View className="bg-muted rounded-full p-2">
             <UserPlus size={18} className="text-muted-foreground" />
           </View>
           <Text className="text-muted-foreground">Add customer</Text>
-        </Button>
+        </Pressable>
       </View>
 
       <Separator />
@@ -89,16 +88,15 @@ export function OrderPanel({
 
       {/* Footer - Checkout */}
       <View className="mt-auto px-4 py-4">
-        <Button
-          variant="secondary"
-          className="h-14 w-full flex-row justify-between"
+        <Pressable
+          className="bg-secondary h-14 w-full flex-row items-center justify-between rounded-md px-4 active:opacity-80"
           onPress={onCheckout}
         >
-          <Text className="text-secondary-foreground font-medium">Offline checkout</Text>
-          <Text className="text-secondary-foreground font-semibold">
+          <Text className="text-secondary-foreground text-sm font-medium">Offline checkout</Text>
+          <Text className="text-secondary-foreground text-sm font-semibold">
             {formatCurrency(total)}
           </Text>
-        </Button>
+        </Pressable>
       </View>
     </View>
   );

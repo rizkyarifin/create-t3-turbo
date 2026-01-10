@@ -26,7 +26,7 @@ export function ActionTile({
       <Pressable
         onPress={onPress}
         className={cn(
-          "bg-card border-border active:bg-accent flex h-32 flex-col items-start justify-between rounded-xl border border-dashed p-4"
+          "bg-card border-border h-32 flex-col items-start justify-between rounded-xl border border-dashed p-4 active:opacity-80"
         )}
       >
         <View className="bg-muted rounded-lg p-2">
@@ -41,7 +41,7 @@ export function ActionTile({
     <Pressable
       onPress={onPress}
       className={cn(
-        "bg-muted/50 active:bg-accent flex h-32 flex-col items-start justify-between rounded-xl p-4"
+        "bg-muted/50 h-32 flex-col items-start justify-between rounded-xl p-4 active:opacity-80"
       )}
     >
       {Icon && (

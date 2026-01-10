@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { View, Pressable } from "react-native";
 import {
   Home,
@@ -11,6 +10,7 @@ import {
   Lock,
 } from "lucide-react-native";
 import { cn } from "~/lib/utils";
+import { Button } from "~/components/ui/button";
 import type { LucideIcon } from "lucide-react-native";
 
 interface SidebarItemProps {
@@ -27,15 +27,17 @@ function SidebarItem({ icon: Icon, isActive, onPress }: SidebarItemProps) {
         <View className="bg-primary absolute left-0 top-1/2 h-10 w-1.5 -translate-y-1/2 rounded-r-full" />
       )}
       <View className="flex-1 items-center">
-        <Pressable
+        <Button
+          variant="ghost"
+          size="icon"
           onPress={onPress}
-          className="h-11 w-11 items-center justify-center active:opacity-70"
+          className="h-12 w-12"
         >
           <Icon
-            size={22}
+            size={24}
             className={isActive ? "text-foreground" : "text-muted-foreground"}
           />
-        </Pressable>
+        </Button>
       </View>
     </View>
   );
@@ -56,12 +58,12 @@ function BottomItem({ icon: Icon, variant = "default", hasNotification, onPress 
       <Pressable
         onPress={onPress}
         className={cn(
-          "h-11 w-11 items-center justify-center rounded-xl",
+          "h-12 w-12 items-center justify-center rounded-xl active:opacity-80",
           isWarning ? "bg-red-50" : "bg-muted"
         )}
       >
         <Icon
-          size={20}
+          size={24}
           className={isWarning ? "text-destructive" : "text-foreground"}
         />
       </Pressable>
@@ -74,39 +76,42 @@ function BottomItem({ icon: Icon, variant = "default", hasNotification, onPress 
   );
 }
 
-type NavItem = "home" | "calendar" | "tag" | "user" | "more";
+export type NavItem = "home" | "calendar" | "products" | "customers" | "more";
 
-export function Sidebar() {
-  const [activeItem, setActiveItem] = useState<NavItem>("home");
+interface SidebarProps {
+  activeItem: NavItem;
+  onActiveItemChange: (item: NavItem) => void;
+}
 
+export function Sidebar({ activeItem, onActiveItemChange }: SidebarProps) {
   return (
     <View className="bg-background flex h-full w-[6%] flex-col items-center py-4">
       {/* Top navigation items */}
-      <View className="flex flex-1 flex-col items-center gap-1">
+      <View className="flex flex-1 flex-col items-center gap-10">
         <SidebarItem
           icon={Home}
           isActive={activeItem === "home"}
-          onPress={() => setActiveItem("home")}
+          onPress={() => onActiveItemChange("home")}
         />
         <SidebarItem
           icon={CalendarDays}
           isActive={activeItem === "calendar"}
-          onPress={() => setActiveItem("calendar")}
+          onPress={() => onActiveItemChange("calendar")}
         />
         <SidebarItem
           icon={Tag}
-          isActive={activeItem === "tag"}
-          onPress={() => setActiveItem("tag")}
+          isActive={activeItem === "products"}
+          onPress={() => onActiveItemChange("products")}
         />
         <SidebarItem
           icon={User}
-          isActive={activeItem === "user"}
-          onPress={() => setActiveItem("user")}
+          isActive={activeItem === "customers"}
+          onPress={() => onActiveItemChange("customers")}
         />
         <SidebarItem
           icon={MoreHorizontal}
           isActive={activeItem === "more"}
-          onPress={() => setActiveItem("more")}
+          onPress={() => onActiveItemChange("more")}
         />
       </View>
 
